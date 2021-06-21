@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMS</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+        
+        ;
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <nav-bar :titleprop="appTitle"></nav-bar>
+        <div class="container">
+
+            <div class="card text-white bg-primary my-3">
+                <div class="card-header">Logs</div>
+                <div class="card-body">
+                    <pre class="card-text">{{logs}}</pre>
+                </div>
+            </div>
+        </div>
+        <footbar></footbar>
+    </div>
+
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/vue.js"></script>
+    <script src="assets/js/axios.min.js"></script>
+    <script src="assets/js/xlsx.full.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
