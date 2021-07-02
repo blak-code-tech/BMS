@@ -25,23 +25,11 @@ var addModal = Vue.component('add-modal', {
                 var results = res.data;
 
                 if (results.includes('ALLGOOD')) {
-                    // Check if an element currently exists
-                    if (!$('#successCheck').length) {
-                        var successAlert = '<div id="successCheck" class="alert alert-success alert-dismissible" role="alert">Bank Added Successfully..<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                        mainForm.before(successAlert);
-                    }
                     setTimeout(function() {
                         overlay.hide();
                         displayResults.show();
                     }, 2000);
                 } else {
-                    // Check if an element currently exists
-                    if (!$('#sqlError').length) {
-                        var errorAlert = '<div id="sqlError" class="alert alert-danger alert-dismissable" role="alert">' +
-                            results +
-                            '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                        mainForm.before(errorAlert);
-                    }
                     setTimeout(function() {
                         overlay.hide();
                         form.show();
@@ -49,7 +37,7 @@ var addModal = Vue.component('add-modal', {
                 }
 
             } else {
-                console.log('error', res);
+                alert('error', res);
             }
         },
         reloadPage() {
@@ -498,7 +486,7 @@ var editModal = Vue.component('edit-modal', {
                 }
 
             } else {
-                console.log('error', res);
+                alert('error', res);
             }
         },
         reloadPage() {
@@ -628,13 +616,13 @@ var deleteModal = Vue.component('delete-modal', {
                     }, 2000);
                 }
             } else {
-                console.log('error', res);
+                alert('error', res);
             }
         },
         reloadPage() {
             var displayResults = $('.overlay-results');
             var form = $('.modalContent');
-            // window.location.reload();
+            
             app.allBooks();
             setTimeout(function() {
                 displayResults.hide();

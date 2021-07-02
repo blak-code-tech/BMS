@@ -23,7 +23,7 @@ public class BookResource {
 	BookRepository repo = new BookRepository();
 
 	@GET
-	public int getCount() {
+	public long getCount() {
 
 		return repo.BooksCount();
 	}
@@ -47,7 +47,6 @@ public class BookResource {
 	@Path("search/{input}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Book> searchBook(@PathParam("input") String input) {
-
 		return repo.searchBooks(input);
 	}
 
