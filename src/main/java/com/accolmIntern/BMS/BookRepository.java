@@ -139,7 +139,7 @@ public class BookRepository {
 			logger.info("Transaction begun..");
 
 			logger.info("Processing query..");
-			String query = "select b from Books b where b.id like \"% " + input + "%\" or b.title like \"%" + input
+			String query = "select b from books b where b.id like \"% " + input + "%\" or b.title like \"%" + input
 					+ "%\" or b.author like \"%" + input + "%\" or b.price like \"%" + input + "%\"";
 
 			List<Book> bks = em.createQuery(query, Book.class).getResultList();
