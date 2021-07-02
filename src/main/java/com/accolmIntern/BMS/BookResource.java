@@ -23,7 +23,7 @@ public class BookResource {
 	BookRepository repo = new BookRepository();
 
 	@GET
-	public int getCount() {
+	public long getCount() {
 
 		return repo.BooksCount();
 	}

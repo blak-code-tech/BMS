@@ -139,10 +139,10 @@ public class BookRepository {
 			logger.info("Transaction begun..");
 
 			logger.info("Processing query..");
-			String query = "select b from books b where b.id like \"% " + input + "%\" or b.title like \"%" + input
-					+ "%\" or b.author like \"%" + input + "%\" or b.price like \"%" + input + "%\"";
+			String query = "select * from books where book_id like \"% " + input + "%\" or title like \"%" + input
+					+ "%\" or author like \"%" + input + "%\" or price like \"%" + input + "%\"";
 
-			List<Book> bks = em.createQuery(query, Book.class).getResultList();
+			List<Book> bks = em.createNativeQuery(query, Book.class).getResultList();
 
 			logger.info("Processing completed..");
 
@@ -290,7 +290,7 @@ public class BookRepository {
 		return null;
 	}
 
-	public int BooksCount() {
+	public long BooksCount() {
 		logger.info("================================================================================");
 		logger.info("Starting get books count..");
 
@@ -307,10 +307,10 @@ public class BookRepository {
 
 			logger.info("Processing query..");
 
-			Query query = em.createNativeQuery("SELECT * FROM Books", Book.class);
+			Query query = em.createNativeQuery("SELECT Count(*) FROM books");
 			@SuppressWarnings("unchecked")
-			List<Book> bks = query.getResultList();
-			int count = bks.size();
+			long count = (long) query.getSingleResult();
+			
 			logger.info("Processing completed..");
 
 			logger.info("Commiting transaction..");
