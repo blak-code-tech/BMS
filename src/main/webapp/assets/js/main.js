@@ -193,23 +193,11 @@ var uploadModal = Vue.component('upload-modal', {
                     var results = res.data;
 
                     if (results.includes('ALLGOOD')) {
-                        // Check if an element currently exists
-                        if (!$('#successCheck').length) {
-                            var successAlert = '<div id="successCheck" class="alert alert-success alert-dismissible" role="alert">Bank Added Successfully..<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                            mainForm.before(successAlert);
-                        }
                         setTimeout(function() {
                             overlay.hide();
                             displayResults.show();
                         }, 2000);
                     } else {
-                        // Check if an element currently exists
-                        if (!$('#sqlError').length) {
-                            var errorAlert = '<div id="sqlError" class="alert alert-danger alert-dismissable" role="alert">' +
-                                results +
-                                '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                            mainForm.before(errorAlert);
-                        }
                         setTimeout(function() {
                             overlay.hide();
                             form.show();
@@ -327,7 +315,7 @@ var uploadModal = Vue.component('upload-modal', {
                 	};
                 }*/
             } else {
-                console.log("File type " + fileType + "is not supported..");
+                alert("File type " + fileType + "is not supported..");
             }
         },
         csvToArray(str, delimiter = ",") {
@@ -371,7 +359,6 @@ var uploadModal = Vue.component('upload-modal', {
         reloadPage() {
             var displayResults = $('.overlay-results');
             var form = $('.modalContent');
-            // window.location.reload();
             app.allBooks();
             this.author = "";
             this.title = "";
@@ -759,6 +746,7 @@ var app = new Vue({
     data: {
         appTitle: this.setTitle,
         search: "",
+        isSearching: false,
         isFetching: true,
         logs: '',
         did: 0,
@@ -811,6 +799,7 @@ var app = new Vue({
                     res = await axios.get('http://localhost:8080/BMS/webapi/books/search/' + query);
 
                     if (res.status == 200) {
+                        this.isSearching = true;
                         this.books = res.data;
 
                     } else {
@@ -819,6 +808,7 @@ var app = new Vue({
                 }
 
             } else {
+                this.isSearching = false;
                 this.allBooks();
             }
         },

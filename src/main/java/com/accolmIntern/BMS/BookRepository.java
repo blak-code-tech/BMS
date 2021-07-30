@@ -1,7 +1,6 @@
 package com.accolmIntern.BMS;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -142,6 +141,7 @@ public class BookRepository {
 			String query = "select * from books where book_id like \"% " + input + "%\" or title like \"%" + input
 					+ "%\" or author like \"%" + input + "%\" or price like \"%" + input + "%\"";
 
+			@SuppressWarnings("unchecked")
 			List<Book> bks = em.createNativeQuery(query, Book.class).getResultList();
 
 			logger.info("Processing completed..");
@@ -775,6 +775,8 @@ public class BookRepository {
 		return null;
 	}
 
+	//This method processes CSV and Excel files that has been uploaded
+	//Its parameters are an Input stream and File Details(FormDataContentDispoosition)
 	public String createByProcessing(InputStream inputStream, FormDataContentDisposition fileDetail) {
 
 		logger.info("================================================================================");
@@ -903,7 +905,6 @@ public class BookRepository {
 			try {
 				log.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			myReader.close();
